@@ -31,7 +31,9 @@ honestly, including what it does *not* promise (it is not exactly-once; a plugin
 be re-entered, which is why `_registry` carries the previous `jobId`).
 
 **4. The resume gate.** Why a resume checks a structural flow signature and falls back to a
-blank continue on drift — an edited flow cannot resume into a stale plan.
+blank continue on drift — an edited flow cannot resume into a stale plan. The snapshot's
+full shape, and how a backend stores it per-pid and hands it back on the resume request, is
+in [The wire](../02-fusion/the-wire.md#5-the-traversal-snapshot--_sched).
 
 **5. Safety rails.** `RequestTimeOut` (per NATS request, default 5s), `ExecuteTimeOut`
 (whole process, default 3600s), `ProcessNodeLimit` (nodes visited, default 500). What each

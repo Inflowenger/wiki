@@ -82,7 +82,7 @@ Write the table before the code. One row per node type your users see:
 If a row has no plausible primitive, it is a **Plugin**. That is what Plugin is for, and
 reaching for it is not a failure.
 
-FloMorphic publishes exactly this table, in the product UI, for all thirteen of its nodes —
+FloMorphic publishes exactly this table, in the product UI, for all fifteen of its nodes —
 see [Part IV](../04-flomorphic/the-palette.md).
 
 ### 4. Implement the backend contract

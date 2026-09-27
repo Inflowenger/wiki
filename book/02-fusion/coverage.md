@@ -50,6 +50,7 @@ that maps each target key to a static value or a JSONPath.
 | --- | --- | --- |
 | If / else | **Contract** | authored — rule returns `then` or `else` tags |
 | Switch / multi-way branch | **Contract** | drawn — N tagged handlers on one node |
+| Classification / routing | **Plugin** (a *decider*) | drawn — a closed-set picker whose declared answers are the ports; one round-trip, calibrated, no free text (FloMorphic's Jev) |
 | Comparison operators (`>`, `<`, contains, matches, between, is empty) | **Contract** | authored — one hook case each; the engine learns nothing |
 | Guardrail / policy gate | **Contract** (opa) | authored — Rego over the scope |
 | Loop / iterate until | **Contract** + a backward edge | drawn — a loop is an edge plus a condition |
@@ -187,7 +188,7 @@ a closed primitive set, and knowing them up front is worth more than a table of 
 The reason to hold the line at six, rather than adding a primitive whenever something is
 awkward:
 
-- **Two products share one engine.** FloMorphic's thirteen nodes and a hypothetical CI
+- **Two products share one engine.** FloMorphic's fifteen nodes and a hypothetical CI
   product's `job`/`step`/`matrix` both lower to the same six. Neither needs a runtime fork.
 - **A plugin written once runs everywhere.** Because the protocol is the contract, not the
   product.

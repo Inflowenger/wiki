@@ -20,11 +20,16 @@ practical consequence of the protocol-not-product decision.
 | Jira · MongoDB · Postgres | Go | any host |
 | Scrapli *(beta)* | Python | any host |
 | Gmail · Google Workspace · Telegram · GitHub *(beta)* | Node/Go/Python | **FloMorphic only** ★ |
-| osctrl | Go | **Venapce** |
 
 ★ These reach FloMorphic's central **Connect / OpenConnector** proxy over the
 `flomorphic.svc.oc.*` NATS subjects, which only FloMorphic provides. The dependency is
 recorded as `hostDependency` in the catalog's `index.json`.
+
+> **Not in the snapshot:** `osctrl` is often assumed to be a catalog plugin, because Venapce's
+> roadmap lists it. It is not listed yet — only a feasibility study exists in
+> `plugin-catalog/docs/`. A plugin joins the catalog when it is built and published, not when
+> it is planned. See [Part V](../05-venapce/collectors.md) for the roadmap, and treat
+> `plugins/index.json` as authoritative.
 
 ## Sections planned
 

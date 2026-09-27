@@ -34,7 +34,7 @@ like a GitHub Actions workflow. A JSON data model minted by a user in a form. A
 domain-specific language you invent this afternoon. The runtime never learns your format
 exists.
 
-Six chapters build that argument, and three more make it usable:
+Six chapters build that argument, and four more make it usable:
 
 | Chapter | What it establishes |
 | --- | --- |
@@ -43,6 +43,7 @@ Six chapters build that argument, and three more make it usable:
 | [Tag routing](tag-routing.md) | How *every* branch, gate, policy and agent decision is one mechanism |
 | [The coverage argument](coverage.md) | Every requirement a workflow product ships, mapped to a primitive — including the awkward cases |
 | [The backend contract](the-backend-contract.md) | The three questions your backend answers, and nothing more |
+| [The wire](the-wire.md) | A real backend walked end to end — process rows, the traversal snapshot, the error ledger, and a run that finishes hours later |
 | [Compiling a canvas](compiling-a-canvas.md) | The shipped compiler, worked end to end |
 | [Compiling a YAML DSL](compiling-a-yaml-dsl.md) | The *same* seam, on a format with no graph library at all |
 | [Build your own workflow product](build-a-workflow-product.md) | The assembly instructions: what you write, what you get |

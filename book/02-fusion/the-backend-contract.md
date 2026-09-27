@@ -111,8 +111,13 @@ type Settings struct {
     RequestTimeOut   int64  // per NATS request, seconds (default 5)
     ExecuteTimeOut   int64  // whole process, seconds (default 3600)
     ProcessNodeLimit uint16 // safety cap on nodes visited (default 500)
+    StopOnError      bool   // prune a node's outgoing edges when it errors
 }
 ```
+
+`Exec` returns as soon as the engine accepts the run. **It hands you a pid, not a result** —
+everything the run produces comes back later, through `UpdateContext` and the event stream.
+[The wire](the-wire.md) is about that.
 
 Stop a run early:
 
@@ -174,10 +179,18 @@ kinds of entry live there, both engine-managed and both opaque to you:
   node left for its next run. A plugin's `jobId` lives here, which is how a job that
   outlived the process is reconnected; it is handed back to the plugin on its next
   handshake as `_registry`.
-- **Traversal snapshot** (`_sched`) — the previous run's completed node generations and
-  join watermarks, written on every finish, read back only on a resume.
+- **Traversal snapshot** (`_sched`) — the run's completed node generations and join
+  watermarks, written on every finish.
+- **Error ledger** (`_errors`) — every error that run recorded. A flow does not stop for a
+  node error, so a run that hit several can still finish `completed`; this is how a caller
+  who was not watching learns what it actually did.
 
-Neither needs anything from you beyond storing the header as-is.
+The registry needs nothing from you beyond storing the header as-is. The last two are
+different: they describe **one run**, and the header is **one slot per `contextId`**, so
+overlapping runs over the same context clobber each other's. A backend that resumes runs
+lifts them off the message and stores them per-pid — see
+**[The wire](the-wire.md#5-the-traversal-snapshot--_sched)**, which walks a production
+implementation of exactly that.
 
 ---
 
@@ -193,26 +206,29 @@ the same `PID`). The pattern:
 2. Your backend schedules whatever it likes. A timer, a webhook, a person clicking
    *Approve*. **The engine knows nothing about this** and is not running during it.
 3. Later, you start a new process whose `StartNodeIds` are the **successors** of that
-   terminated node, with `inflow.WithResume()`.
+   terminated node, handing back the snapshot the parked run produced.
 
 ```go
 inflow.NewProcess(successorIds,
     inflow.WithFlowId(flowId),
     inflow.WithContextDocument(contextId),
-    inflow.WithResume(),
+    inflow.WithResume(snapshot), // *models.ResumeState — the PARKED run's, by its pid
 ).Exec(ctx)
 ```
+
+The resume is a **new run with its own pid**, not a reawakened one — the engine held nothing
+open while it waited. Correlate the chain with an `instanceId` of your own in the request
+meta if you want it to report as one thing.
 
 **Why the flag matters.** Node results already live in the context document, so a plain
 restart continues fine on a linear path. But a *join* downstream of the resume point
 checks the completion **generation** of its dependencies, not their data — and a
 dependency that completed before the stop is not re-run from the resume point. Without
 `Resume`, that join waits until the process times out. With it, the engine seeds the
-traversal snapshot the previous run left in the context header, so the join sees its
-already-completed dependencies and fires.
+snapshot you handed back, so the join sees its already-completed dependencies and fires.
 
-`Resume` is additive: omit it and the request behaves exactly as before. It takes effect
-only when a matching snapshot is present **and** the flow definition is unchanged since
+`Resume` is additive: omit it (or pass `nil`) and the request behaves exactly as before. It
+takes effect only when a snapshot is present **and** the flow definition is unchanged since
 the snapshot was taken — the engine gates on a structural signature and falls back to a
 blank continue on drift. An edited flow cannot resume into a stale plan.
 
@@ -270,6 +286,9 @@ suffixed with `models.INFLOW_REST_PORT` (`9001`).
 
 ## Next
 
+- **[The wire](the-wire.md)** — this contract as a production implementation: process rows,
+  the traversal snapshot, the error ledger, park and resume, and what to do when a run's
+  finish event never arrives. Read it before you write your own backend.
 - **[Compiling a canvas](compiling-a-canvas.md)** — the shipped Vue Flow / React Flow
   compiler, worked end to end.
 

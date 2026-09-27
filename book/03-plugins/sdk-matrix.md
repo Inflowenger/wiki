@@ -4,7 +4,7 @@
 
 | Language | Package | Status |
 | --- | --- | --- |
-| **Go** | `Inflowenger/go-plugin-sdk` | **Stable** — the reference `inflowv1` implementation and the mainstream path. Go 1.26+. |
+| **Go** | `Inflowenger/go-plugin-sdk` | **Stable** — the reference `inflowv1` implementation and the mainstream path. Go 1.27+. |
 | **Node.js / TypeScript** | `@inflowenger/node-plugin-sdk` | **Stable** — on npm, Node 18+. Tracks the Go SDK feature-for-feature. |
 | **Python** | `inflowenger-plugin-sdk` | **Beta** — on PyPI, Python 3.11+. The Python port of the Go SDK. |
 

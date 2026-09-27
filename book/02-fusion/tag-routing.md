@@ -39,6 +39,11 @@ the only one.
 | **Extrinsic** | the service reply carries `_cmd: "next_tags"` + `_next_filter` | your backend |
 | **Plugin** | the running job sends the `next_tags` command | an external process |
 
+All three can also **declare** their ports at author time — see
+[declared outbound ports](#declared-outbound-ports--author-time-tag-routing) below. The
+runtime mechanism is unchanged; the declaration only makes the possibilities visible on the
+canvas before anything runs.
+
 ### Contract — a compiled rule decides
 
 ```go
@@ -101,6 +106,57 @@ only that port. The model picks among ports you drew; everything downstream of e
 is already defined.
 
 The same is true of an MCP node, or any plugin that chooses its own continuation.
+
+<a id="the-exception-port"></a>
+#### The exception port — fail, and still route
+
+`CmdNextFilter` and the terminal commands are not mutually exclusive. A plugin can route to a
+reserved tag and **then** end the job as failed:
+
+```go
+if top.Score < minConfidence {
+    job.CmdNextFilter([]string{"_exception"})
+    job.DoneWithErrorData("no answer cleared min_confidence", map[string]any{
+        "top_answer": top.Option, "score": top.Score,
+    })
+}
+```
+
+The edge tagged `_exception` still fires, so the branch continues to a handler the author drew
+— route to a fallback model, escalate to a person, log and stop — while the node is recorded
+as an error in the run. **A node that cannot decide says so, loudly, and the graph decides what
+happens next.** This is the pattern behind FloMorphic's Jev node, and it is why a decider node
+never has to silently pick a low-confidence answer.
+
+---
+
+## Declared outbound ports — author-time tag routing
+
+Tag routing chooses an edge at run time. `Action.Outbound` declares the *possibilities* at
+author time, so the choice is visible before anything runs:
+
+```go
+p.AddAction(sdkv1.Action{
+    Method: "classify",
+    Outbound: []sdkv1.OutboundPort{
+        {Title: "Escalate", Tags: []string{"escalate"}, Description: "amount over limit"},
+        {Title: "Approve",  Tags: []string{"approve"}},
+    },
+    RequestHandler: handler,
+})
+```
+
+The declaration is served on `@actions`, so the host renders **one output port per entry** —
+labelled by `Title`, explained by `Description` — and stamps every edge drawn from that port
+with its tags. At run time the handler still calls `CmdNextFilter(port.Tags)`; edges carrying
+other tags are skipped. `Action.Tags` carries the same idea for grouping, with a reserved
+`class` key that lets one binary host several logical products (a Google plugin bundling Docs,
+Sheets and Calendar actions) and tell them apart on the list.
+
+It is deliberately **not essential**: the same branching is achievable by following this node
+with a Contract that fans out on the committed result. Declaring `Outbound` only keeps the port
+topology, its tags and its documentation on the action instead of wiring them by hand on the
+canvas. Leave it nil for a single-output action.
 
 ---
 

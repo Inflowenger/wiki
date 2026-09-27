@@ -23,7 +23,9 @@ Two markers classify every subject, and they carry the meaning:
 ## Sections planned
 
 **1. The metadata plane — `inflow.v1.*`.** Full table: `@intro`, `@settings`, `@actions`,
-`<ACTION>.@form`, and meta functions. What each returns.
+`<ACTION>.@form`, and meta functions. What each returns — including how `@actions` carries an
+action's **declared outbound ports** (`Action.Outbound`), so a host renders one output port per
+branch and stamps each edge with its tags before anything runs.
 
 **2. The execution plane — `inflow.cpu.*`.** `inflow.cpu.<PLUGIN_ID>.<ACTION>` to execute;
 `inflow.cpu.<PLUGIN_ID>.<JOB_ID>.<CMD>` for a running job's commands back to the runtime.

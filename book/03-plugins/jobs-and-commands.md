@@ -11,7 +11,7 @@ Every one is a NATS request on `inflow.cpu.<PLUGIN_ID>.<JOB_ID>.<CMD>`:
 
 | `<CMD>` | Sent by | Meaning |
 | --- | --- | --- |
-| `progress` | `job.Progress` / `job.Done` / `job.DoneWithError` | report progress `0–100` (100 = finished) |
+| `progress` | `job.Progress` / `job.Done` / `job.DoneWithError` / `job.DoneWithErrorData` | report progress `0–100` (100 = finished) |
 | `context/current` | `job.CmdGetCurrentScope` | read the current context scope |
 | `context/path` | `job.CmdGetScope` | read context by JSON path; `$this` is rewritten to the node's location |
 | `commit` | `job.CmdSetOnPath` | write data into context at a JSON path (`commit_on`, `$this` allowed) |
@@ -42,7 +42,23 @@ can refuse ungranted plugin-originated calls. Note these do **not** arrive on th
 connection; a backend subscribes on the plugin space deliberately.
 
 **6. Finishing.** `Done` vs `DoneWithError`. An error is reported and committed, and the
-flow continues — because routing belongs to the graph.
+flow continues — because routing belongs to the graph. There is a third outcome worth its
+own line: **`DoneWithErrorData`**. It ends the job as failed exactly like `DoneWithError`,
+but keeps a payload — `data` is committed next to the reason, which always lands on the
+canonical `error` detail. Use it when the failure still carries something the flow needs:
+the state the node reached, a partial result, or scope the node must not drop. That last one
+matters because a terminal command's details **are** what gets committed onto the node's
+scope — a bare `DoneWithError` reports only `error`, so anything the node had persisted there
+(a conversation, a cursor) is gone by the next read. Hand it back through `data` to keep it.
+
+**6b. Failing and routing at once — the exception port.** `DoneWithErrorData` composes with
+`CmdNextFilter`: a node can route to a reserved `_exception` tag **and then** end as failed.
+The edge tagged `_exception` still fires, so the branch continues to a handler you drew while
+the node itself is recorded as an error. This is the pattern behind FloMorphic's Jev node —
+when no answer clears the configured `min_confidence`, it routes `_exception` and reports the
+failure with the scores it did compute attached, instead of silently picking a low-confidence
+answer. A node that cannot decide says so, loudly, and the graph decides what happens next.
+See [Tag routing](../02-fusion/tag-routing.md#the-exception-port).
 
 **7. Long-running and reconnecting jobs.** How `_registry` carries the previous `jobId`, and
 what it takes for a job that outlived its process to be reconnected.

@@ -33,7 +33,7 @@ interesting part back.
 image**, baked per-arch, building nothing at run time. Why one container is deliberate, and
 how to run your own plugin set instead.
 
-**6. The stack.** API: Go 1.26 + Fiber v3, SQLite + `sqlite-vec` via sqlc, the Vue Flow →
+**6. The stack.** API: Go 1.27 + Fiber v3, SQLite + `sqlite-vec` via sqlc, the Vue Flow →
 primitive compiler, and the `svc.*` handlers backing the store / HITL / continue nodes.
 Canvas: Vue 3 + Vite + TypeScript + Vue Flow + Tailwind v4 + Pinia; runs standalone
 (browser-local) or connected.

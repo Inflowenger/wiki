@@ -27,6 +27,7 @@
 - [Tag routing: one mechanism, three deciders](book/02-fusion/tag-routing.md)
 - [The coverage argument](book/02-fusion/coverage.md)
 - [The backend contract](book/02-fusion/the-backend-contract.md)
+- [The wire: a backend, end to end](book/02-fusion/the-wire.md)
 - [Compiling a canvas: Vue Flow / React Flow](book/02-fusion/compiling-a-canvas.md)
 - [Compiling a YAML DSL](book/02-fusion/compiling-a-yaml-dsl.md)
 - [Build your own workflow product](book/02-fusion/build-a-workflow-product.md)

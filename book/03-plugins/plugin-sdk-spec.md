@@ -37,7 +37,13 @@ two-phase job handshake, the six job commands, the `{_registry, body}` envelope,
 `RequestBody[T]` with `Body` and `Registry`.
 
 **3. Declaring an action.** `Method`, `Title`, `Form`, `RequestHandler`, and how the action
-list and per-action forms are served.
+list and per-action forms are served. Plus two optional declarations that make an action
+self-describing: **`Outbound`** — statically declared outbound ports, the author-time
+counterpart of runtime tag routing, served on `@actions` so a host renders one output port per
+entry; and **`Tags`** — an open bag of labels with a reserved `class` key, so one binary can
+host several logical products and tell them apart. Neither is required; both keep port
+topology and documentation on the action instead of wiring it by hand. →
+[Tag routing](../02-fusion/tag-routing.md#declared-outbound-ports--author-time-tag-routing)
 
 **4. Settings profiles.** `RequiredParams` / settings forms, the submit handler, and how
 filled values arrive as `body.settings` on every call. The rule that a plugin stores no
@@ -46,10 +52,13 @@ user credentials.
 **5. Meta functions.** Server-side functions a form may call while open — the mechanism
 behind dependent fields. → [Forms](forms-and-ui.md)
 
-**6. Errors and outcomes.** `Done`, `DoneWithError`, what an error means for the flow
-(reported and committed; the flow continues). Why `CmdStopFlow` was *removed*: flow control
-belongs to the graph and to the user, not to a plugin. A plugin reports outcomes; it does
-not decide routing — except through `next_tags`, which selects among ports the author drew.
+**6. Errors and outcomes.** `Done`, `DoneWithError`, `DoneWithErrorData`, what an error means
+for the flow (reported and committed; the flow continues) and why `DoneWithErrorData` exists —
+to keep a payload and the node's scope alive through a failure. Why `CmdStopFlow` was *removed*:
+flow control belongs to the graph and to the user, not to a plugin. A plugin reports outcomes;
+it does not decide routing — except through `next_tags`, which selects among ports the author
+drew. That includes the reserved `_exception` tag, which lets a node fail *and* route — see
+[the exception port](../02-fusion/tag-routing.md#the-exception-port).
 
 **7. Testing without a live platform.** What can be exercised offline.
 
