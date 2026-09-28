@@ -83,7 +83,7 @@ If a row has no plausible primitive, it is a **Plugin**. That is what Plugin is 
 reaching for it is not a failure.
 
 FloMorphic publishes exactly this table, in the product UI, for all fifteen of its nodes —
-see [Part IV](../04-flomorphic/the-palette.md).
+see [Part V](../05-flomorphic/the-palette.md).
 
 ### 4. Implement the backend contract
 
@@ -131,8 +131,9 @@ inflow.NewProcess(startNodeId,
 
 ### 8. Show the run
 
-Subscribe to the process event stream and feed it to `@inflowenger/flow-trace` to animate
-your canvas. See [Observing a run](observing-a-run.md).
+Relay the process event stream to the browser and feed it to `@inflowenger/flow-trace` to
+animate your canvas. See [Observing a run](observing-a-run.md) for the wire contract, and
+[Part IV — Watching a run](../04-frontend/flow-trace.md) for the library.
 
 ---
 
@@ -150,7 +151,7 @@ instance when you need to.
 
 **Multi-tenancy as an architecture, not a `WHERE` clause.** Infra models tenants as NATS
 accounts — *spaces* — with credentials scoped so one tenant's plugins cannot observe
-another's traffic. See [Part VI](../06-architecture/spaces-and-isolation.md).
+another's traffic. See [Part VII](../07-architecture/spaces-and-isolation.md).
 
 **A full integration catalog.** This is the one people underestimate. Plugins target the
 `inflowv1` protocol, not any product. Every plugin in the
@@ -163,7 +164,9 @@ wire-identical. Contributors pick a language, not a protocol.
 
 **Frontend packages.** `@inflowenger/flow-trace` turns the event stream into movement on
 your canvas; `@inflowenger/plugin-form-builder` renders a plugin's declared form. Both on
-npm. See [Part III](../03-plugins/forms-and-ui.md).
+npm, and between them most of a workflow product's frontend. See
+**[Part IV — The Frontend Layer](../04-frontend/)**, and in particular
+[Building a process product on any frontend](../04-frontend/build-a-process-product.md).
 
 ---
 
@@ -185,14 +188,23 @@ Deliberately:
 | | **FloMorphic** | **Venapce** | **A CI product** |
 | --- | --- | --- | --- |
 | Authoring | Vue Flow canvas | FloMorphic workflows | `.ci.yaml` in a repo |
-| Vocabulary | LLM, MCP, Rule, Stores, HITL | posture features | job, step, matrix |
+| Vocabulary | LLM, MCP, Rule, Stores, HITL | stage · findings · issues · activities | job, step, matrix |
 | Storage | SQLite + `sqlite-vec` | Postgres | yours |
 | Compiler | `compilers/vueFlow` + hook | *(inherits FloMorphic's)* | a YAML compiler + hook |
+| Ships a feature by | a release | **installing a flow package** | a release |
 | Runtime change | none | none | none |
 
-Venapce is the interesting column: it did not implement the backend contract at all. It
-built its logic *as FloMorphic workflows* and kept only the view. That is a third
-integration tier — above the SDK, above plugins — and [Part V](../05-venapce/) is about it.
+Venapce is the interesting column: **it did not implement the backend contract at all.** It
+built its logic *as FloMorphic workflows*, drives them over FloMorphic's REST API, and has
+no `inflow-fusion` dependency. That is a third integration tier — above the SDK, above
+plugins — and [Part VI](../06-venapce/) is about it.
+
+It is also where the tiers stop being a ladder. Venapce *does* ship an `inflowv1` plugin —
+**in-process, inside its own backend** — so flows can write to its database and query its
+fleet without a credential or a settings profile. Tier 3 for the logic, tier 2 for the
+reach, and no tier 1 anywhere. If your product already owns the data a flow needs,
+[that pattern](../06-venapce/built-on-flomorphic.md#3-the-correction-venapce-is-its-own-plugin)
+is the cheapest seam in the book.
 
 ---
 
@@ -215,6 +227,9 @@ integration tier — above the SDK, above plugins — and [Part V](../05-venapce
 ## Next
 
 - **[Observing a run](observing-a-run.md)** — the last piece: seeing what happened.
+- **[Part IV — Building a process product on any frontend](../04-frontend/build-a-process-product.md)**
+  — this chapter's argument from the browser side, with the two npm packages that cover
+  forms and live runs.
 
 **Source material:** the blog post *Build Your Own Workflow Product*,
 `inflow-fusion/README.md`, `FloMorphic/getting-started/docs/concepts.md`.

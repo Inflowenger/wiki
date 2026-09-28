@@ -38,7 +38,7 @@ the bearer-JWT scheme. (Detailed in
 **3. Accounts, spaces and scoped credentials.** How a plugin credential is narrowed to a
 subject prefix unique to that plugin instance, so co-tenants of one account cannot reach
 each other's inboxes. The custom inbox prefix as an access-hardening knob.
-→ [Part VI — Spaces and isolation](../06-architecture/spaces-and-isolation.md)
+→ [Part VII — Spaces and isolation](../07-architecture/spaces-and-isolation.md)
 
 **4. The resource registry and dispatch.** How a Fractal registers, what a *portal* record
 carries (including `subscribe_prefix`, the event-log subject, and an optional per-instance

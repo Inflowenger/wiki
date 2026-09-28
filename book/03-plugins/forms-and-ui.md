@@ -1,6 +1,11 @@
 # Forms — a node with its own UI
 
-> **Status: outlined.**
+> **Status: outlined.** This chapter is the **plugin author's** side: how a plugin declares
+> the form it wants drawn.
+>
+> **The renderer's side is written, in [Part IV](../04-frontend/plugin-form-builder.md)** —
+> the `x-inflow-ui` and `x-inflow-notif` contracts in full, the built-in `pluginFn` action,
+> how an answer is applied by shape, and how a host themes and overrides it.
 
 The property that most separates a plugin node from a compiled one: **it ships its own
 configuration UI**, and that UI can talk back to the plugin while it is open.
@@ -13,7 +18,8 @@ configuration UI**, and that UI can talk back to the plugin while it is open.
 - **`@inflowenger/plugin-form-builder`** (Vue 3 + TS) is the renderer that understands that
   key. It is one of the two packages in
   [`inflow-js`](https://github.com/Inflowenger/inflow-js); the other is
-  [`flow-trace`](../02-fusion/observing-a-run.md#consuming-it-inflowengerflow-trace).
+  [`flow-trace`](../04-frontend/flow-trace.md). Both are
+  **[Part IV](../04-frontend/)**.
 
 ```sh
 pnpm add @inflowenger/plugin-form-builder

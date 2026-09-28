@@ -53,7 +53,7 @@ exercised** — Void, Code, Contract, Extrinsic, Plugin, GoTo. No runtime change
 for any of them.
 
 **2. The three universal fields.** `title`, `key`, `scope` — mirrored onto the compiled
-primitive, exactly as [Part II](../02-fusion/node-primitives.md#the-three-universal-fields)
+primitive, exactly as [Part II](../02-fusion/node-primitives.md#the-universal-fields)
 describes.
 
 **3. "Bound functions become output ports."** The LLM node in detail — the clearest real

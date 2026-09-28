@@ -12,13 +12,15 @@
 | **SDK** | `go-plugin-sdk` | Reference `inflowv1` implementation. Go 1.27+. | open |
 | **SDK** | `node-plugin-sdk` | Node/TypeScript, on npm. Tracks the Go SDK. | open |
 | **SDK** | `py-plugin-sdk` | Python, on PyPI. Beta. | open |
-| **Frontend** | `inflow-js` → `@inflowenger/flow-trace` | Turns the process event stream into flow movement and completion. No dependencies, no framework. | open |
-| **Frontend** | `inflow-js` → `@inflowenger/plugin-form-builder` | Renders `x-inflow-ui` on top of JSON Forms. Vue 3. | open |
+| **Frontend** | `inflow-js` → `@inflowenger/flow-trace` | Turns the process event stream into flow movement and completion. No dependencies, no framework. → [Part IV](../04-frontend/flow-trace.md) | open |
+| **Frontend** | `inflow-js` → `@inflowenger/plugin-form-builder` | Renders `x-inflow-ui` and `x-inflow-notif` on top of JSON Forms. Vue 3. → [Part IV](../04-frontend/plugin-form-builder.md) | open |
+| **Frontend** | `inflow-js` → `lab/` | A playground app driving both packages against a captured run and live-edited schemas. Never published. | open |
 | **Reference** | `inflow-inspector` + `inspector-api` | The low-level developer panel: edit raw primitives, inspect contexts and processes. Built on `inflow-fusion` — the worked example of consuming the SDK. | open |
 | **Product** | `flomorphic-api` | Go 1.27 + Fiber v3, SQLite + `sqlite-vec` via sqlc, the Vue Flow → primitive compiler, `svc.*` handlers. | open |
 | **Product** | `flomorphic-wapp` | The canvas: Vue 3 + Vite + TS + Vue Flow + Tailwind v4 + Pinia. | open |
 | **Product** | `builtin-plugins` | `llm`, `mcp`, `cast`, `http`, `jev` — FloMorphic's stock nodes, as ordinary plugins. | open |
-| **Product** | `venapce-api` + `venapce-wapp` | Go + Fiber + Postgres backend and Vue panel; Superset behind it. | — |
+| **Product** | `venapce-api` | Go 1.26 + Fiber v2 + Postgres (pgx/sqlc), Superset proxy, the operations package manager, and an **in-process `inflowv1` plugin** (`db.*`, `osquery.*`) over its own pool. No `inflow-fusion` dependency. | — |
+| **Product** | `venapce-wapp` | The panel: stage / findings / issues / activities / operations, fleet view, and a chart + dashboard builder. Vue. | — |
 | **Catalog** | `plugin-catalog` | The plugin index and the plugin-developer knowledge base. | open |
 | **Ops** | `Inflowenger/getting-started` | Installer for the platform (Infra + Fractal) and the inspector. | open |
 | **Ops** | `FloMorphic/getting-started` | Installer and developer tooling for the FloMorphic stack. | open |
@@ -30,7 +32,9 @@
 ```
  Venapce            ── workflows on ──▶  FloMorphic
    │                                        │
-   │ plugins (osctrl, scrapli, github)      │ builtin-plugins (llm, mcp, cast, http, jev)
+   │ its OWN in-process plugin              │ builtin-plugins (llm, mcp, cast, http, jev)
+   │ (db.* · osquery.*)                     │
+   │ + catalog plugins (scrapli, github)    │
    ▼                                        ▼
  ─────────────────  inflowv1 protocol  ──────────────────
                          │
@@ -38,6 +42,9 @@
                          │
  FloMorphic-api ── inflow-fusion ──▶ Infra ◀── Fractal
  inspector-api  ─────────┘
+
+ browser side:  flomorphic-wapp ─┐
+                venapce-wapp  ───┴── inflow-js (flow-trace · plugin-form-builder)
 ```
 
 Read it as: **nothing points downward into the runtime except through a documented
@@ -48,8 +55,14 @@ contract**, and nothing in the runtime knows any product exists.
 | Tier | You write | Examples |
 | --- | --- | --- |
 | **1 — SDK** | a backend implementing `IInflowService`, a compiler hook, extrinsic handlers | FloMorphic, inflow-inspector |
-| **2 — Plugin** | a process speaking `inflowv1` | Jira, Postgres, Qdrant, `llm`, osctrl |
-| **3 — Workflows** | no runtime code at all — logic as flows on an existing host | Venapce |
+| **2 — Plugin** | a process speaking `inflowv1` | Jira, Postgres, Qdrant, `llm`, Scrapli |
+| **3 — Workflows** | no runtime **host** code — logic as flows on an existing host | Venapce |
+
+**The tiers combine.** Venapce is the worked example: tier 3 for its *logic* (FloMorphic
+workflows, driven over REST — no `inflow-fusion` dependency) and tier 2 for its *reach*
+(an `inflowv1` plugin running **in-process inside its own backend**, over the database pool
+and osctrl client it already has). See
+[Part VI](../06-venapce/built-on-flomorphic.md#so-which-tier-is-it).
 
 ## Sections planned
 

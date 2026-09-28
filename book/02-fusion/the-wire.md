@@ -36,7 +36,7 @@ Every design decision below falls out of that one fact.
 ## The reference implementation
 
 Everything in this chapter is real code from **`flomorphic-api`**, the backend behind
-[FloMorphic](../04-flomorphic/index.md). It is a Go + Fiber service over SQLite, which is
+[FloMorphic](../05-flomorphic/index.md). It is a Go + Fiber service over SQLite, which is
 worth noticing on its own: the engine does not care, so the product picked the most modest
 storage that suited it.
 
@@ -1236,7 +1236,7 @@ author's mistakes from yours; and horizontal scale by starting a second engine.
   `inflow.event.log` back into movement on your canvas.
 - **[Build your own workflow product](build-a-workflow-product.md)** — the assembly
   instructions this chapter is the hardest step of.
-- **[How FloMorphic was built](../04-flomorphic/how-it-was-built.md)** — the same code as a
+- **[How FloMorphic was built](../05-flomorphic/how-it-was-built.md)** — the same code as a
   product case study.
 
 **Source material:** `flomorphic-api/inflow/` — `wire.go`, `process.go`, `events.go`,

@@ -16,9 +16,11 @@ costs**. The second half of that sentence is the part most architecture document
 | **Plugins** | reach anything the primitives can't | a process | [III](../03-plugins/) |
 | **A new SDK language** | who can write plugins | conformance work | [III](../03-plugins/plugin-sdk-spec.md) |
 | **Plugin forms** | how a node is configured | JSON Schema + `x-inflow-ui` | [III](../03-plugins/forms-and-ui.md) |
-| **Native node drawers** | a first-party node's UI | a frontend component | [IV](../04-flomorphic/builtin-nodes.md) |
-| **Workflows on an existing host** | product behaviour, with no code | authoring | [V](../05-venapce/built-on-flomorphic.md) |
-| **Event consumers** | what observability looks like | a subscriber | [II](../02-fusion/observing-a-run.md) |
+| **Native node drawers** | a first-party node's UI | a frontend component | [V](../05-flomorphic/builtin-nodes.md) |
+| **Workflows on an existing host** | product behaviour, with no runtime host code | authoring | [VI](../06-venapce/built-on-flomorphic.md) |
+| **An in-process plugin** | your own product's data and connections, as nodes | one dependency | [VI](../06-venapce/built-on-flomorphic.md#3-the-correction-venapce-is-its-own-plugin) |
+| **Flow packages** | shipping a feature without a release | a manifest | [VI](../06-venapce/operations.md) |
+| **Event consumers** | what observability looks like | a subscriber | [II](../02-fusion/observing-a-run.md) · [IV](../04-frontend/flow-trace.md) |
 
 ## Sections planned
 

@@ -165,7 +165,8 @@ canvas. Leave it nil for a single-output action.
 - **Deactivate-then-match.** All `Next` entries are set `Active = -1`; an entry is
   re-activated if *any* of its `Tags` is in the emitted list.
 - **Multiple tags = fan-out.** `["a","b"]` fires every edge tagged `a` or `b`, **in
-  parallel**. Join them again with a Void node using `Depends`.
+  parallel**. Join them again with `Depends` — a field on **every** node, not a node type.
+  See [Waiting: joins and delays](waiting.md).
 - **No match = dead end.** If nothing matches, nothing continues on that branch — which is
   why an untagged catch-all "else" edge is worth drawing.
 - **Untouched by default.** A linear node that emits no tags follows its `Next` exactly as

@@ -7,7 +7,8 @@
 
 A workflow product has a vocabulary. n8n has *Webhook*, *IF*, *Set*, *HTTP Request*.
 GitHub Actions has *job*, *step*, *uses*, *needs*. FloMorphic has *LLM*, *MCP*, *Rule*,
-*Human in the Loop*. Venapce has *collect fleet*, *promote to issue*.
+*Human in the Loop*. A claims product would have *score*, *check fraud rules*, *request
+documents*, *adjudicate*.
 
 Those vocabularies are the product. They are what the user thinks in, what the
 documentation teaches, what the sales page shows. They are also *completely different from

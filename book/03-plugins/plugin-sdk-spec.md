@@ -58,7 +58,7 @@ to keep a payload and the node's scope alive through a failure. Why `CmdStopFlow
 flow control belongs to the graph and to the user, not to a plugin. A plugin reports outcomes;
 it does not decide routing — except through `next_tags`, which selects among ports the author
 drew. That includes the reserved `_exception` tag, which lets a node fail *and* route — see
-[the exception port](../02-fusion/tag-routing.md#the-exception-port).
+[the exception port](../02-fusion/tag-routing.md#the-exception-port--fail-and-still-route).
 
 **7. Testing without a live platform.** What can be exercised offline.
 

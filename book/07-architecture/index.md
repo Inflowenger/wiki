@@ -1,4 +1,4 @@
-# Part VI — Architecture in Practice
+# Part VII — Architecture in Practice
 
 > **What the architecture buys you, without reading the closed source.**
 >

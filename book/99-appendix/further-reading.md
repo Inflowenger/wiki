@@ -16,18 +16,18 @@
 | *Your Evaluator Is a Node. Your Loop Is an Edge.* | [Coverage](../02-fusion/coverage.md) |
 | *Cardinality Is the Loop You Didn't Write* | [Coverage — awkward cases](../02-fusion/coverage.md#the-awkward-cases-stated-plainly) |
 | *Pausing Is Easy. Resuming Is the Hard Part.* | [The backend contract](../02-fusion/the-backend-contract.md#resuming-a-run) |
-| *Two Ways to Extend an Agent Platform* | [Part III](../03-plugins/), [AI harness](../04-flomorphic/ai-harness.md) |
+| *Two Ways to Extend an Agent Platform* | [Part III](../03-plugins/), [AI harness](../05-flomorphic/ai-harness.md) |
 | *Integration Count Is a Vanity Metric Now* | [The plugin catalog](../03-plugins/catalog.md) |
-| *You Extend FloMorphic the Way You Install a Browser Extension* | [Builtin nodes are plugins](../04-flomorphic/builtin-nodes.md) |
-| *An Agent Can't Act on What It Can't Name* | [AI harness](../04-flomorphic/ai-harness.md) |
-| *Reason Once, Reuse Many Times* | [AI harness](../04-flomorphic/ai-harness.md) |
-| *Your Company Doesn't Need Its Own LLM. It Needs a Brain.* | [Part IV](../04-flomorphic/) |
-| *Stop Chat. Start Work.* | [Part IV](../04-flomorphic/) |
-| *Build a Claims Adjudicator You Can Actually Audit* | [Part IV](../04-flomorphic/) |
-| *FloMorphic Is Now an MCP Server* | [Driving it over MCP](../04-flomorphic/mcp.md) |
-| *Venapce: A Nervous System for Security Governance* | [Part V](../05-venapce/) |
-| *Your Fleet Is a Live Database. Ask It Something.* | [Collectors](../05-venapce/collectors.md) |
-| *Your Semantic Layer Is a Flow* | [Part V](../05-venapce/) |
+| *You Extend FloMorphic the Way You Install a Browser Extension* | [Builtin nodes are plugins](../05-flomorphic/builtin-nodes.md) |
+| *An Agent Can't Act on What It Can't Name* | [AI harness](../05-flomorphic/ai-harness.md) |
+| *Reason Once, Reuse Many Times* | [AI harness](../05-flomorphic/ai-harness.md) |
+| *Your Company Doesn't Need Its Own LLM. It Needs a Brain.* | [Part V](../05-flomorphic/) |
+| *Stop Chat. Start Work.* | [Part V](../05-flomorphic/) |
+| *Build a Claims Adjudicator You Can Actually Audit* | [Part V](../05-flomorphic/) |
+| *FloMorphic Is Now an MCP Server* | [Driving it over MCP](../05-flomorphic/mcp.md) |
+| *Venapce: A Nervous System for Security Governance* | [Part VI](../06-venapce/) |
+| *Your Fleet Is a Live Database. Ask It Something.* | [Collectors](../06-venapce/collectors.md) |
+| *Your Semantic Layer Is a Flow* | [Part VI](../06-venapce/) |
 
 ## Worked flows
 

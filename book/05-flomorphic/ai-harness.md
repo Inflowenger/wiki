@@ -54,7 +54,7 @@ instruction ("be careful") but a real threshold the node enforces — below it, 
 the reserved `_exception` port and reports failure with its scores attached, rather than
 quietly returning its best bad guess. The threshold is a field on the node; the fallback is an
 edge you drew. See
-[the exception port](../02-fusion/tag-routing.md#the-exception-port).
+[the exception port](../02-fusion/tag-routing.md#the-exception-port--fail-and-still-route).
 
 **8. Human in the loop.** The approval gate as an Extrinsic that parks the run. Pausing is
 easy; **resuming is the hard part** — and the resume machinery is in

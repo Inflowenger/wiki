@@ -2,7 +2,7 @@
 
 > **Status: outlined.**
 >
-> The single most load-bearing fact in Part IV: **FloMorphic's builtin nodes are ordinary
+> The single most load-bearing fact in Part V: **FloMorphic's builtin nodes are ordinary
 > plugins.** Same SDK, same protocol, no privileged access. The only thing they do
 > differently is skip the generic form builder.
 

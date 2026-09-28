@@ -17,7 +17,7 @@ node on one graph, over one shared context: `RAG`, `context engineering`, `agent
 is not rewritten, replaced or migrated. It **joins**: it answers the graph, and the graph
 calls it. A system in production for a decade can become AI-native without a rewrite, and
 can grow from one laptop to a cluster without changing shape.
-→ [Part VI — Attaching a system you already run](../06-architecture/attaching-legacy.md)
+→ [Part VII — Attaching a system you already run](../07-architecture/attaching-legacy.md)
 
 **3. Flow engineering as the discipline.** Not "flow" in the linear-automation sense.
 Breaking work into states and transitions, with the model as a *bounded participant* and

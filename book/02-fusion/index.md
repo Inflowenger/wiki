@@ -41,6 +41,7 @@ Six chapters build that argument, and four more make it usable:
 | [The compiler seam](the-compiler-seam.md) | The single architectural idea the whole claim rests on |
 | [The primitive node reference](node-primitives.md) | The six things the engine can execute, and why there is no seventh |
 | [Tag routing](tag-routing.md) | How *every* branch, gate, policy and agent decision is one mechanism |
+| [Waiting: joins and delays](waiting.md) | `Depends` — a join is a field on every node — and park-and-resume, the pattern behind every delay |
 | [The coverage argument](coverage.md) | Every requirement a workflow product ships, mapped to a primitive — including the awkward cases |
 | [The backend contract](the-backend-contract.md) | The three questions your backend answers, and nothing more |
 | [The wire](the-wire.md) | A real backend walked end to end — process rows, the traversal snapshot, the error ledger, and a run that finishes hours later |

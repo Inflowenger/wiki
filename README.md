@@ -5,9 +5,10 @@
 ### Where context becomes computation
 
 **The knowledge base for the Inflowenger runtime, the `inflow-fusion` SDK,
-the `inflowv1` plugin protocol, and the products built on them — FloMorphic and Venapce.**
+the `inflowv1` plugin protocol, the `inflow-js` frontend packages, and the products
+built on them — FloMorphic and Venapce.**
 
-`Inflowenger` · `inflow-fusion` · `inflowv1` · `FloMorphic` · `Venapce`
+`Inflowenger` · `inflow-fusion` · `inflowv1` · `inflow-js` · `FloMorphic` · `Venapce`
 
 </div>
 
@@ -29,11 +30,16 @@ checkable. It answers, in order:
    This is the `inflow-fusion` story, and it is the centre of the book.
 3. **How the runtime is extended** — the `inflowv1` protocol and the plugin SDKs, the one
    node type that never compiles away.
-4. **That the claim survives contact with a real product** — **FloMorphic**, an AI harness
+4. **What the browser gets for free** — `inflow-js`: a live run rendered on your canvas,
+   and a working configuration form for an integration you have never seen. Two npm
+   packages, and the chapter on giving *your* users the ability to define their own
+   processes.
+5. **That the claim survives contact with a real product** — **FloMorphic**, an AI harness
    built end to end on the runtime with nothing reserved for it.
-5. **That it survives a second time, one layer up** — **Venapce**, a security-governance
-   product whose entire business logic lives in FloMorphic workflows.
-6. **How it scales and bends** — what Infra, Fractal and the plugin isolation model buy
+6. **That it survives a second time, one layer up** — **Venapce**, a security-governance
+   product whose entire business logic lives in FloMorphic workflows, and which ships its
+   own features as **installable flow packages**.
+7. **How it scales and bends** — what Infra, Fractal and the plugin isolation model buy
    you, architecturally, without reading their source.
 
 > **On the closed parts.** Infra and Fractal are not open source. This book does not
@@ -50,8 +56,10 @@ checkable. It answers, in order:
 | Evaluating whether the claims hold up | [Part 0 — The Thesis](book/00-preface/the-thesis.md) |
 | Building a **workflow product** on the runtime | [Part II — The Fusion Layer](book/02-fusion/) |
 | Writing a **plugin node** | [Part III — The Plugin Layer](book/03-plugins/) |
-| Trying to understand what FloMorphic *is* | [Part IV — FloMorphic](book/04-flomorphic/) |
-| Responsible for running this in production | [Part VI — Architecture in Practice](book/06-architecture/) |
+| Letting **your users define their own processes** | [Part IV — Building a process product](book/04-frontend/build-a-process-product.md) |
+| Building the **browser half** — canvas, forms, live runs | [Part IV — The Frontend Layer](book/04-frontend/) |
+| Trying to understand what FloMorphic *is* | [Part V — FloMorphic](book/05-flomorphic/) |
+| Responsible for running this in production | [Part VII — Architecture in Practice](book/07-architecture/) |
 | Lost in the repository sprawl | [Appendix — Ecosystem map](book/99-appendix/ecosystem-map.md) |
 
 ---
@@ -67,9 +75,10 @@ book's spine for any static-site or PDF build.
 | **I** | [The Platform](book/01-platform/) — what Inflowenger is: model, primitives, Infra, Fractal | outlined |
 | **II** | [The Fusion Layer](book/02-fusion/) — **any source format → a running flow** | **written** |
 | **III** | [The Plugin Layer](book/03-plugins/) — `inflowv1`, the SDKs, forms, jobs | outlined |
-| **IV** | [FloMorphic](book/04-flomorphic/) — the runtime's first product | outlined |
-| **V** | [Venapce](book/05-venapce/) — a product built on the product | outlined |
-| **VI** | [Architecture in Practice](book/06-architecture/) — scale, isolation, customization | outlined |
+| **IV** | [The Frontend Layer](book/04-frontend/) — `inflow-js`: **live runs and dynamic forms in the browser** | **written** |
+| **V** | [FloMorphic](book/05-flomorphic/) — the runtime's first product | outlined |
+| **VI** | [Venapce](book/06-venapce/) — a product built on the product | **written** |
+| **VII** | [Architecture in Practice](book/07-architecture/) — scale, isolation, customization | outlined |
 | — | [Appendix](book/99-appendix/) — ecosystem map, repositories, further reading | outlined |
 
 **Outlined** chapters carry their thesis, their section plan, and pointers to the source
@@ -88,12 +97,14 @@ updated context*) and exposes domain logic as callable steps. Between your autho
 surface and the engine sits a **compiler** whose per-node **hook** is the only place your
 product's vocabulary lives. Six primitives are all the engine can execute; the sixth,
 **Plugin**, is a live external process speaking **`inflowv1`** over NATS, and is the open
-end through which everything else arrives.
+end through which everything else arrives. In the browser, two npm packages
+(**`inflow-js`**) turn the engine's event stream into movement on your canvas and a
+plugin's declared schema into a working form.
 
 ```
-   your authoring surface            ← yours (canvas, YAML, DSL, API)
-        │  save verbatim
-        ▼
+   your frontend  + inflow-js        ← yours (the UI) · flow-trace + plugin-form-builder
+        │  save verbatim      ▲  live run + plugin forms
+        ▼                     │
    your backend + inflow-fusion      ← yours (data, domain logic, the compiler hook)
         │  answers 3 questions over NATS
         ▼

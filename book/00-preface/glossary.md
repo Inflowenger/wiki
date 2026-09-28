@@ -39,6 +39,8 @@
 | **Space** | A NATS account — the unit of authentication, authorisation and isolation. |
 | **Portal / resource** | A registered engine instance in Infra's registry. |
 | **FloMorphic** | The AI harness built end to end on the runtime. The runtime's first product. |
-| **Venapce** | A security-governance product whose business logic lives in FloMorphic workflows. |
+| **Venapce** | A security-governance product whose business logic lives in FloMorphic workflows. Tier 3 for its logic, and tier 2 for its reach — it ships an `inflowv1` plugin in-process. |
+| **Operation** | *(Venapce)* A feature shipped as an installable package: a manifest plus workflow exports, landed into FloMorphic with the operator's params substituted in. |
+| **Activity** | *(Venapce)* A row's history entry. A `run` activity is one flow executed on one pipeline row, with the flow's conclusion lifted back into typed columns. |
 | **`x-inflow-ui`** | The JSON Schema extension letting a plugin's form call back into the plugin. |
 | **Process event stream** | The `v:1` event contract an engine publishes while executing. |

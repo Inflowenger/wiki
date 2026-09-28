@@ -62,18 +62,26 @@ type Next struct {
 Exactly one of `Code` / `GoTo` / `Extrinsic` / `Plugin` / `Contract` is populated, matching
 `Type`.
 
-### The three universal fields
+### The universal fields
 
-Before you pick a type, three things are already true of any node in any vocabulary:
+Before you pick a type, these are already true of any node in any vocabulary — they sit on
+the **base struct**, so every primitive inherits them:
 
 | Field | The question it answers |
 | --- | --- |
 | **Title** | What is this called? |
 | **Key** | Where does its output go in the context? |
 | **Scope** | What slice of context does it see? |
+| **Next** / **Tags** | Where can control go, and which edges does a tag emission select? |
+| **Depends** | Which other nodes must finish before this one runs? |
 
 A product's canvas can present these however it likes; they map straight through. This is
 why an arbitrary bespoke-looking node is structurally identical to every other node.
+
+> **`Depends` is worth a second look.** Because it is on the envelope rather than inside a
+> rule, **any node can be a join** — a Plugin node can wait for three branches and *then*
+> call Jira. A "Wait for All" card is a product convention, not a node type. See
+> [Waiting: joins and delays](waiting.md).
 
 ---
 
@@ -89,10 +97,12 @@ Three uses carry it:
 
 - **Start markers.** The entry point of a flow.
 - **Dead ends.** A branch that deliberately stops.
-- **Joins.** This is the important one. Combined with `Depends`, a Void node is a
+- **Joins.** The conventional carrier. Combined with `Depends`, a Void node is a
   synchronisation barrier: when a node fans out into parallel branches, a Void listing all
-  of them in `Depends` holds until every one has finished, merges their results into the
-  shared context, and continues once. `Promise.all` for a graph.
+  of them in `Depends` holds until every one has finished and continues once. `Promise.all`
+  for a graph. Void is *conventional* here rather than required — `Depends` works on any
+  node; a pure barrier just has no reason to also do work. See
+  [Waiting: joins and delays](waiting.md).
 
 ## Code — computation
 
@@ -204,8 +214,10 @@ Those four axes span the space. Anything you can name falls into one of them:
   already makes the call).
 - *"I need a wait-for-approval node."* → Extrinsic that parks the run, plus a resume.
 - *"I need a loop."* → an edge pointing backward, plus a Contract deciding when to stop.
-- *"I need parallel fan-out and a join."* → tag emission with multiple tags, plus a Void
-  with `Depends`.
+- *"I need parallel fan-out and a join."* → tag emission with multiple tags, plus
+  `Depends` on the node that must wait ([waiting.md](waiting.md)).
+- *"I need a delay, or to resume this next Tuesday."* → an Extrinsic that records a
+  schedule and answers `StopHereResponse` ([waiting.md](waiting.md#part-2--continue-after-a-delay-is-a-pattern-not-a-primitive)).
 - *"I need a sub-workflow."* → GoTo.
 - *"I need a node that calls a model and picks its own next step."* → Plugin that emits
   tags.

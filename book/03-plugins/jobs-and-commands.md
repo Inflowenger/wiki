@@ -58,7 +58,7 @@ the node itself is recorded as an error. This is the pattern behind FloMorphic's
 when no answer clears the configured `min_confidence`, it routes `_exception` and reports the
 failure with the scores it did compute attached, instead of silently picking a low-confidence
 answer. A node that cannot decide says so, loudly, and the graph decides what happens next.
-See [Tag routing](../02-fusion/tag-routing.md#the-exception-port).
+See [Tag routing](../02-fusion/tag-routing.md#the-exception-port--fail-and-still-route).
 
 **7. Long-running and reconnecting jobs.** How `_registry` carries the previous `jobId`, and
 what it takes for a job that outlived its process to be reconnected.

@@ -179,8 +179,13 @@ a real `seq` gap, and traffic on the subject that is not an event at all. The re
 message at a time, with controls to reorder, drop from, and pollute the stream — which is
 a faster way to understand the contract's edges than reading about them.
 
+**The full API surface — the tracker's events, the state it accumulates, the five rules a
+consumer gets wrong, and the complete log taxonomy — is
+[Part IV — The Frontend Layer](../04-frontend/flow-trace.md).** This section is the wire
+contract; that part is the library.
+
 The other package in `inflow-js` is covered in
-[Part III — Forms](../03-plugins/forms-and-ui.md).
+[Part IV — Dynamic forms](../04-frontend/plugin-form-builder.md).
 
 ---
 
@@ -220,6 +225,8 @@ Part II is complete. Continue to:
 
 - **[Part III — The Plugin Layer](../03-plugins/)** — the one primitive that never
   compiles away.
+- **[Part IV — Watching a run](../04-frontend/flow-trace.md)** — the consumer library for
+  this contract, and [the complete log taxonomy](../04-frontend/log-categories.md).
 
 **Source material:** `inflow-fusion/docs/logs.md` (the normative contract),
 [`inflow-js`](https://github.com/Inflowenger/inflow-js) `packages/flow-trace`.

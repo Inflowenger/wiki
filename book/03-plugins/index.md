@@ -42,7 +42,7 @@ credentials never live on the graph.
 | [The `inflowv1` protocol](inflowv1-protocol.md) | The wire contract — subjects, handshake, payloads |
 | [Plugin SDK specification](plugin-sdk-spec.md) | What an SDK must implement, in any language |
 | [Jobs and commands](jobs-and-commands.md) | The execution register: progress, context, routing |
-| [Forms: a node with its own UI](forms-and-ui.md) | JSON Forms, `x-inflow-ui`, dependent fields |
+| [Forms: a node with its own UI](forms-and-ui.md) | JSON Forms, `x-inflow-ui`, dependent fields — the renderer's side is [Part IV](../04-frontend/plugin-form-builder.md) |
 | [The SDK matrix](sdk-matrix.md) | Go, Node/TypeScript, Python — wire-identical |
 | [The plugin catalog](catalog.md) | What exists, and how to get listed |
 

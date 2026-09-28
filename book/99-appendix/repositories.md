@@ -18,10 +18,14 @@
 | Design a plugin form with dependent fields | `plugin-catalog` → `docs/dependent-fields.md` |
 | Render a plugin form in your own frontend | `inflow-js` → `packages/plugin-form-builder` |
 | Animate a run on your own canvas | `inflow-js` → `packages/flow-trace` |
+| Let your own users define their own processes | this book → [Part IV](../04-frontend/build-a-process-product.md) |
+| Try both frontend packages without a backend | `inflow-js` → `lab/` |
 | Work on FloMorphic's API / canvas | `flomorphic-api` / `flomorphic-wapp` READMEs |
 | Install the platform by itself | `Inflowenger/getting-started` |
 | Install FloMorphic | `FloMorphic/getting-started` |
 | Install Venapce | `Venapce/getting-started` |
+| Read Venapce's real data model | `venapce-api/internal/store/schema.sql` (the source of truth) |
+| Ship a feature as a package of flows | `venapce-api/internal/operations/` → [Part VI](../06-venapce/operations.md) |
 
 ## Normative sources
 
@@ -37,5 +41,6 @@ the normative references, by subject:
 | The process event schema | `inflow-fusion/docs/logs.md` |
 | The `inflowv1` protocol | `go-plugin-sdk/docs/protocol-inflowv1.md` |
 | Job commands | `go-plugin-sdk/docs/jobs-and-commands.md` |
-| Form builder / `x-inflow-ui` | `go-plugin-sdk/docs/form-builder.md`, `inflow-js` |
+| Form builder / `x-inflow-ui` | `go-plugin-sdk/docs/form-builder.md`, `inflow-js/packages/plugin-form-builder` |
+| The event-stream consumer API | `inflow-js/packages/flow-trace` (`src/types.ts` is the typed wire contract) |
 | The plugin listing bar | `plugin-catalog/CONTRIBUTING.md` |

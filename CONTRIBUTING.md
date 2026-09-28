@@ -51,9 +51,9 @@ book/
 ├── 01-platform/     what Inflowenger is
 ├── 02-fusion/       any source format → a running flow   ← written
 ├── 03-plugins/      inflowv1 and the SDKs
-├── 04-flomorphic/   the runtime's first product
-├── 05-venapce/      a product built on the product
-├── 06-architecture/ scale, isolation, customization
+├── 05-flomorphic/   the runtime's first product
+├── 06-venapce/      a product built on the product
+├── 07-architecture/ scale, isolation, customization
 └── 99-appendix/     maps and further reading
 ```
 

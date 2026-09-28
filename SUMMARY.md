@@ -25,6 +25,7 @@
 - [The compiler seam](book/02-fusion/the-compiler-seam.md)
 - [The primitive node reference](book/02-fusion/node-primitives.md)
 - [Tag routing: one mechanism, three deciders](book/02-fusion/tag-routing.md)
+- [Waiting: joins and delays](book/02-fusion/waiting.md)
 - [The coverage argument](book/02-fusion/coverage.md)
 - [The backend contract](book/02-fusion/the-backend-contract.md)
 - [The wire: a backend, end to end](book/02-fusion/the-wire.md)
@@ -43,30 +44,40 @@
 - [The SDK matrix: Go, Node, Python](book/03-plugins/sdk-matrix.md)
 - [The plugin catalog](book/03-plugins/catalog.md)
 
-## Part IV — FloMorphic
+## Part IV — The Frontend Layer
 
-- [Overview: the runtime's first product](book/04-flomorphic/index.md)
-- [What FloMorphic is](book/04-flomorphic/what-it-is.md)
-- [The node palette, and what each node lowers to](book/04-flomorphic/the-palette.md)
-- [Builtin nodes are plugins](book/04-flomorphic/builtin-nodes.md)
-- [The AI harness](book/04-flomorphic/ai-harness.md)
-- [How FloMorphic was built on the runtime](book/04-flomorphic/how-it-was-built.md)
-- [Driving it over MCP](book/04-flomorphic/mcp.md)
+- [Overview: two npm packages, and nothing else](book/04-frontend/index.md)
+- [Watching a run: `flow-trace`](book/04-frontend/flow-trace.md)
+- [The log taxonomy](book/04-frontend/log-categories.md)
+- [Dynamic forms: `plugin-form-builder`](book/04-frontend/plugin-form-builder.md)
+- [What a form can say: `x-inflow-notif`](book/04-frontend/notifications.md)
+- [Building a process product on any frontend](book/04-frontend/build-a-process-product.md)
 
-## Part V — Venapce
+## Part V — FloMorphic
 
-- [Overview: a product built on the product](book/05-venapce/index.md)
-- [What Venapce is](book/05-venapce/what-it-is.md)
-- [Built under FloMorphic](book/05-venapce/built-on-flomorphic.md)
-- [Collectors and the plugin roadmap](book/05-venapce/collectors.md)
+- [Overview: the runtime's first product](book/05-flomorphic/index.md)
+- [What FloMorphic is](book/05-flomorphic/what-it-is.md)
+- [The node palette, and what each node lowers to](book/05-flomorphic/the-palette.md)
+- [Builtin nodes are plugins](book/05-flomorphic/builtin-nodes.md)
+- [The AI harness](book/05-flomorphic/ai-harness.md)
+- [How FloMorphic was built on the runtime](book/05-flomorphic/how-it-was-built.md)
+- [Driving it over MCP](book/05-flomorphic/mcp.md)
 
-## Part VI — Architecture in Practice
+## Part VI — Venapce
 
-- [Overview](book/06-architecture/index.md)
-- [Spaces and isolation](book/06-architecture/spaces-and-isolation.md)
-- [Scaling out](book/06-architecture/scaling.md)
-- [Customization: the seams that are open](book/06-architecture/customization.md)
-- [Attaching a system you already run](book/06-architecture/attaching-legacy.md)
+- [Overview: a product built on the product](book/06-venapce/index.md)
+- [What Venapce is](book/06-venapce/what-it-is.md)
+- [Built under FloMorphic](book/06-venapce/built-on-flomorphic.md)
+- [Operations: features as installable flow packages](book/06-venapce/operations.md)
+- [Collectors and the plugin roadmap](book/06-venapce/collectors.md)
+
+## Part VII — Architecture in Practice
+
+- [Overview](book/07-architecture/index.md)
+- [Spaces and isolation](book/07-architecture/spaces-and-isolation.md)
+- [Scaling out](book/07-architecture/scaling.md)
+- [Customization: the seams that are open](book/07-architecture/customization.md)
+- [Attaching a system you already run](book/07-architecture/attaching-legacy.md)
 
 ## Appendix
 

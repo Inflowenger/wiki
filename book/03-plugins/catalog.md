@@ -25,11 +25,17 @@ practical consequence of the protocol-not-product decision.
 `flomorphic.svc.oc.*` NATS subjects, which only FloMorphic provides. The dependency is
 recorded as `hostDependency` in the catalog's `index.json`.
 
-> **Not in the snapshot:** `osctrl` is often assumed to be a catalog plugin, because Venapce's
-> roadmap lists it. It is not listed yet — only a feasibility study exists in
-> `plugin-catalog/docs/`. A plugin joins the catalog when it is built and published, not when
-> it is planned. See [Part V](../05-venapce/collectors.md) for the roadmap, and treat
-> `plugins/index.json` as authoritative.
+> **Not in the snapshot:** `osctrl` is often assumed to be a catalog plugin, because
+> Venapce reaches an osquery fleet. It is not listed — and the reason is more interesting
+> than "not built yet". **Venapce ships those actions itself**, as `osquery.query` /
+> `osquery.queryByTags` on an `inflowv1` plugin running in-process inside `venapce-api`,
+> over the osctrl client that backend already holds. There is no separate plugin to
+> publish, and no settings profile to fill in.
+>
+> The general rule stands: a plugin joins the catalog when it is built and published, not
+> when it is planned — and a product that already owns a connection may never need to
+> publish one at all. See [Part VI](../06-venapce/collectors.md#two-kinds-of-sense-and-the-distinction-matters),
+> and treat `plugins/index.json` as authoritative.
 
 ## Sections planned
 

@@ -37,7 +37,7 @@ on `8088`/`8026` rather than `5173`/`8025` (so FloMorphic and the inspector can 
 side).
 
 **7. Scaling shapes.** One Fractal → several Fractals → tagged/pinned Fractals → clustered
-Infra. → [Part VI — Scaling out](../06-architecture/scaling.md)
+Infra. → [Part VII — Scaling out](../07-architecture/scaling.md)
 
 **8. The optional-runtime trick.** A product API can run CRUD-only with `INFLOW_INFRA_API`
 unset — enough to design and save workflows. Set it, and *Run* goes live. Useful for
