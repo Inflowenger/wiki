@@ -79,6 +79,17 @@
 - [Customization: the seams that are open](book/07-architecture/customization.md)
 - [Attaching a system you already run](book/07-architecture/attaching-legacy.md)
 
+## Part VIII — A guided build
+
+- [Overview: the brain of the organization](book/08-guided-build/index.md)
+- [1 · Install](book/08-guided-build/01-install.md)
+- [2 · Orientation, and the assistant](book/08-guided-build/02-orientation.md)
+- [3 · Stage 1 — Identification](book/08-guided-build/03-identify.md)
+- [4 · Filling the gap: build a plugin](book/08-guided-build/04-build-a-plugin.md)
+- [5 · Stage 2 — Ingestion](book/08-guided-build/05-ingest.md)
+- [6 · Stage 3 — Decision](book/08-guided-build/06-decide.md)
+- [7 · What you built](book/08-guided-build/07-what-you-built.md)
+
 ## Appendix
 
 - [Ecosystem map](book/99-appendix/ecosystem-map.md)

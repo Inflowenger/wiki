@@ -54,6 +54,7 @@ book/
 ├── 05-flomorphic/   the runtime's first product
 ├── 06-venapce/      a product built on the product
 ├── 07-architecture/ scale, isolation, customization
+├── 08-guided-build/  install → a working system, end to end   ← written
 └── 99-appendix/     maps and further reading
 ```
 

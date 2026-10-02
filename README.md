@@ -41,6 +41,9 @@ checkable. It answers, in order:
    own features as **installable flow packages**.
 7. **How it scales and bends** — what Infra, Fractal and the plugin isolation model buy
    you, architecturally, without reading their source.
+8. **What it is like to actually use** — one continuous build, install to a system that
+   answers a customer request against its own contracts. The part that is a *session*
+   rather than an explanation.
 
 > **On the closed parts.** Infra and Fractal are not open source. This book does not
 > document their internals and does not need to: it documents their *contracts* — the
@@ -60,6 +63,7 @@ checkable. It answers, in order:
 | Building the **browser half** — canvas, forms, live runs | [Part IV — The Frontend Layer](book/04-frontend/) |
 | Trying to understand what FloMorphic *is* | [Part V — FloMorphic](book/05-flomorphic/) |
 | Responsible for running this in production | [Part VII — Architecture in Practice](book/07-architecture/) |
+| Starting from zero and wanting to *build something* | [Part VIII — A guided build](book/08-guided-build/) |
 | Lost in the repository sprawl | [Appendix — Ecosystem map](book/99-appendix/ecosystem-map.md) |
 
 ---
@@ -79,6 +83,7 @@ book's spine for any static-site or PDF build.
 | **V** | [FloMorphic](book/05-flomorphic/) — the runtime's first product | outlined |
 | **VI** | [Venapce](book/06-venapce/) — a product built on the product | **written** |
 | **VII** | [Architecture in Practice](book/07-architecture/) — scale, isolation, customization | outlined |
+| **VIII** | [A guided build](book/08-guided-build/) — **install → the brain of an organization**, end to end | **written** |
 | — | [Appendix](book/99-appendix/) — ecosystem map, repositories, further reading | outlined |
 
 **Outlined** chapters carry their thesis, their section plan, and pointers to the source
