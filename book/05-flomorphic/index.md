@@ -47,6 +47,11 @@ privileged access, which is exactly why yours can be too.
 | [How it was built](how-it-was-built.md) | The walkthrough: FloMorphic as a worked Part II |
 | [Driving it over MCP](mcp.md) | The API is itself an MCP server |
 
+> **Want to *use* it rather than understand it?**
+> [Part VIII — Building on FloMorphic](../08-flomorphic-guide/) is a guided session that
+> installs FloMorphic and builds a working system on it end to end. This part is the
+> architecture; Part VIII is the afternoon.
+
 ## Source material
 
 `FloMorphic/getting-started` README and `docs/` · `flomorphic-api/README.md` ·

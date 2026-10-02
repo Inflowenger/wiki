@@ -1,9 +1,59 @@
-# Part VIII — A guided build: the brain of the organization
+# Part VIII — Building on FloMorphic: a guided session
 
-> **A session, not a chapter.** Parts I–VII explain what the platform is. This part is
-> one continuous build, from `curl | bash` to a system that answers a customer request
-> against its own contracts — and it is written so it can be *delivered*: read alone, or
-> run in front of a room with people typing along.
+> **A session, not a chapter.** Parts I–VII explain what the platform is. This part is one
+> continuous build, from `curl | bash` to a system that answers a customer request against
+> its own contracts — and it is written so it can be *delivered*: read alone, or run in
+> front of a room with people typing along.
+>
+> **Scope: this is a *FloMorphic* session.** Everything here is done through
+> [FloMorphic](../05-flomorphic/) — its installer, its canvas, its MCP server, its node
+> palette. FloMorphic is one product *on* the Inflowenger runtime, not the runtime itself,
+> and this part is deliberately the product-level view.
+
+## Where this sits
+
+The wiki covers a stack, and it matters which layer you are standing on while you follow
+along — because a different product on the same runtime would have a different install, a
+different canvas, and its own palette.
+
+```
+┌──────────────────────────────────────────────────────────────────────────┐
+│  LAYER 3 — PRODUCT        FloMorphic  ·  Venapce  ·  yours               │
+│  ▲ THIS PART lives here, in FloMorphic                                  │
+└──────────────────────────────────┬───────────────────────────────────────┘
+┌──────────────────────────────────▼───────────────────────────────────────┐
+│  LAYER 2 — SDK            inflow-fusion · inflowv1 · inflow-js          │
+│  Chapter 4 (writing a plugin) reaches down to here — a plugin targets    │
+│  the PROTOCOL, not the product, so it runs on any host                   │
+└──────────────────────────────────┬───────────────────────────────────────┘
+┌──────────────────────────────────▼───────────────────────────────────────┐
+│  LAYER 1 — RUNTIME        Infra (control plane) · Fractal (engine)       │
+│  Installed in chapter 1 and never touched again                         │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+### What transfers, and what does not
+
+| | Transfers to any product on the runtime | FloMorphic-specific |
+| --- | --- | --- |
+| **The four stages** — identify → ingest → decide | ✅ The method, entirely | — |
+| **The plugin you write** ([ch. 4](04-build-a-plugin.md)) | ✅ It targets `inflowv1`, so it runs on *any* host that speaks the protocol | Only its registration path (the **Extensions** portal) |
+| **Scope cardinality, joins, tag routing** | ✅ Runtime semantics, not product behaviour | — |
+| **Watermarks, ontologies, audit rows** | ✅ Ordinary design patterns | — |
+| `curl … FloMorphic/getting-started …` | — | ✅ FloMorphic's installer |
+| The menus, the canvas, *AI build* | — | ✅ FloMorphic's web app |
+| `flo_*` MCP tools, `flo_get_design_guide` | — | ✅ FloMorphic's API |
+| The fifteen palette nodes | — | ✅ FloMorphic's palette — though all fifteen lower to the same six primitives |
+
+So: if you are here to learn **how to use FloMorphic**, read straight through. If you are
+here to **build a product like FloMorphic**, this session is the thing your users would do,
+and [Part II — Build your own workflow product](../02-fusion/build-a-workflow-product.md)
+is the thing *you* would do.
+
+> **Related, and often confused with this part.**
+> [Part V — FloMorphic](../05-flomorphic/) explains what FloMorphic *is* and how it was
+> built on the runtime. This part is what it is like to *use*. Part V is the architecture;
+> Part VIII is the afternoon.
 
 Everything before this is architecture. The risk with architecture is that it reads well
 and still leaves you with an empty canvas. So this part takes a single scenario and builds

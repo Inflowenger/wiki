@@ -43,6 +43,8 @@ enough to design and save workflows. Set it, and *Run* goes live.
 
 **8. Installing it.** One command; the installer asks where to install, whether to use an
 already-running platform or install a new one, and (optionally) port overrides.
+→ Walked step by step, with the verification checks, in
+[Part VIII — Install](../08-flomorphic-guide/01-install.md).
 
 ## Source material
 

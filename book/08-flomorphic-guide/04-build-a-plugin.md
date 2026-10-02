@@ -3,6 +3,13 @@
 > **Forty-five minutes.** The catalog has no ArangoDB plugin. This chapter builds one, runs
 > it, and watches it appear on the palette *and in the AI build prompt*. The language is Go;
 > Node and Python SDKs are wire-identical and the shape is the same.
+>
+> **The one chapter in this part that is not FloMorphic-specific.** A plugin targets the
+> **`inflowv1` protocol**, not a product — so what you write here runs on *any* host that
+> speaks the protocol, and would work unchanged under a different product built on the same
+> runtime. Only the registration path (FloMorphic's **Extensions** portal, steps 1 and 7) is
+> product-specific; everything between is platform-level.
+> → [Part III — The Plugin Layer](../03-plugins/)
 
 ## Before you write any code: is a plugin the right answer?
 
