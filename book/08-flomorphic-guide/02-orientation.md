@@ -140,10 +140,10 @@ Right, five groups separated by dividers:
 
 | Group | Buttons | Note |
 | --- | --- | --- |
-| **AI** | `AI build` · `AI connect` | Deliberately first, as one segmented pair. Build puts nodes on *this* canvas; connect explains pointing your own client at the MCP server. Two answers to one question |
+| **AI** | `AI build` · `AI connect` | Deliberately first, as one segmented pair. Build puts nodes on *this* canvas; connect explains *"point Claude, Codex or Cursor at this install's MCP server"*. Two answers to one question |
 | **View** | `Tidy` · `Fit` · `Map` | Tidy re-lays the graph out left → right and **replaces hand-placed positions**. Fit frames everything. Map toggles the minimap |
 | **Document** | `Import` · `Export` · `Snapshot` | Export downloads the design as JSON, **unsaved edits included**. Snapshot saves a PNG of the whole graph — the thing to use for a slide |
-| **Runtime** | `Processes` · `Logs` · `Run` | Logs appears **only when connected to a backend**, and carries a red badge with the error count. Run knows whether you have unsaved changes |
+| **Runtime** | `Runs` · `Logs` · `Run` | **`Runs`** opens a popover of the live runs *on this flow* — *"N running / waiting"*, with a jump to each run's context and a stop control. It is not the Processes page. `Logs` appears **only when connected to a backend** and carries a red badge with the error count. `Run` knows whether you have unsaved changes |
 | **Commit** | `Save` | The primary button |
 
 Two more things appear in the editor without being buttons:
@@ -158,11 +158,17 @@ Select a node and an **inspector panel** opens on the right — the node's drawe
 where `title`, `key`, `scope` and everything kind-specific live, including the Start node's
 triggers.
 
-### The palette has two halves
+### The palette has two tabs
 
-**The builtins**, grouped by intent, each card annotated with the runtime primitive it lowers
-to. That annotation is visible in the product, not buried in a compiler, and it is the most
-useful thing on screen while you are learning:
+The palette is a floating panel on the canvas with two tabs: **NODES** and **PLUGINS**. The
+second **only exists once something has been imported** — on a fresh install there is one tab,
+which is itself a useful signal about what this install can reach.
+
+**NODES** holds the builtins, grouped by intent, each card annotated with the runtime
+primitive it lowers to and a one-line tagline (*Await all parallel branches*, *Decide fast
+among declared answers*, *Branch on a contract*). That primitive annotation is visible in the
+product, not buried in a compiler, and it is the most useful thing on screen while you are
+learning:
 
 | Group | Nodes |
 | --- | --- |
@@ -175,9 +181,9 @@ useful thing on screen while you are learning:
 Fifteen nodes, and between them they exercise **all six** runtime primitives. Nothing was
 added to the engine to make any of them work. → [The node palette](../05-flomorphic/the-palette.md)
 
-**Then the imported plugin actions**, below the builtins, grouped under the plugin that
-contributed them as **collapsible accordions** — collapsed by default, because a plugin with
-thirty actions would otherwise bury everything. A plugin whose actions declare more than one
+**PLUGINS** holds the imported plugin actions, grouped under the plugin that contributed
+them as **collapsible accordions** — collapsed by default, because a plugin with thirty
+actions would otherwise bury everything. A plugin whose actions declare more than one
 `tags.class` splits into labelled, colour-coded sections under its accordion; a
 single-service plugin renders as one flat list.
 
